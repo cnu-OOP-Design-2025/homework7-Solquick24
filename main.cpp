@@ -11,17 +11,21 @@ int main() {
         new RubberDuck(),
         new DecoyDuck()
     };
+
     cout << "----------------------" << endl;
 
     const int numDucks = sizeof(ducks) / sizeof(ducks[0]);
 
     for (int i = 0; i < numDucks ; ++i) {
-        cout << "Duck #" << i + 1 << ":" << endl;;
+        cout << "Duck #" << i + 1 << ":" << endl;
         ducks[i]->display();
         ducks[i]->performFly();
         ducks[i]->performQuack();
-        cout << "----------------------" << endl;;
+        cout << "----------------------" << endl;
     }
+
+    // free allocated ducks
+    for (int i = 0; i < numDucks; ++i) delete ducks[i];
 
     ModelDuck model;
 
@@ -30,26 +34,23 @@ int main() {
     model.performFly();
     model.performQuack();
 
-    cout << "----------------------" << endl;;
+    cout << "----------------------" << endl;
 
     cout << "ModelDuck (version 2)" << endl;
-
     model.setQuackBehavior(new Squeak());
-
     model.display();
     model.performFly();
     model.performQuack();
-    cout << "----------------------" << endl;;
-    
+
+    cout << "----------------------" << endl;
+
     cout << "ModelDuck (version 3)" << endl;
-
     model.setFlyBehavior(new FlyWithWings());
-
     model.display();
     model.performFly();
     model.performQuack();
-    cout << "----------------------" << endl;;
 
+    cout << "----------------------" << endl;
 
     return 0;
 }
